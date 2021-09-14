@@ -2,27 +2,18 @@
 import json
 import os
 import datetime
-from re import M
-import numpy as np
 import os.path
 from flask import Flask,request,make_response
 import dill
 
-# ----Additional from previous file----
 from random import randint
 import firebase_admin
 from firebase_admin import credentials,firestore
 import pandas as pd
-import string 
 import pickle
-from pythainlp.corpus import thai_stopwords
-from pythainlp import word_tokenize, Tokenizer
-from sklearn.feature_extraction.text import CountVectorizer,TfidfTransformer
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix,classification_report
-from sklearn import svm
 from My_function import createSVMModel,TestingProcessSVM,text_process
+
+
 
 cred = credentials.Certificate("plenpung-firebase-adminsdk-3kbnb-3d11f00d77.json")
 firebase_admin.initialize_app(cred)
