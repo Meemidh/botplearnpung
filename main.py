@@ -30,7 +30,6 @@ app = Flask(__name__) # Using post as a method
 def mainfunction():
     # รับ intent จาก Dailogflow
     question_from_dailogflow_raw = request.get_json(silent=True, force=True)
-    # เรียกใช้ฟังก์ชัน generating_answer เพื่อแยกส่วนของคำถาม
     answer_from_bot = generating_answer(question_from_dailogflow_raw,cvec_model,sentiment_Model,tfidf_transformer_model)
     # ตอบกลับไปที่ Dialogflow
     r = make_response(answer_from_bot)
@@ -44,12 +43,8 @@ def generating_answer(question_from_dailogflow_dict,cvec_model,sentiment_Model,t
     print(json.dumps(question_from_dailogflow_dict, indent=4, ensure_ascii=False))
     # Getting intent name form intent that recived from dialogflow.
     intent_group_question_str = question_from_dailogflow_dict["queryResult"]["intent"]["displayName"]
-    # Select function for answering question
-    print('######'+ intent_group_question_str)
-    # ref from line
     message = question_from_dailogflow_dict["queryResult"]["queryText"]
     user_id = question_from_dailogflow_dict["originalDetectIntentRequest"]["payload"]["data"]["source"]["userId"]
-    # time
     time = question_from_dailogflow_dict["originalDetectIntentRequest"]["payload"]["data"]["timestamp"]
     date_time = datetime.datetime.fromtimestamp(int(time) / 1000)  # using the local timezone
     
