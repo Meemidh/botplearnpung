@@ -34,7 +34,7 @@ def createKnnModel(x_train,y_train,k):
     #!หาความถี่คำ
     cvec = CountVectorizer(analyzer=lambda x:x.split(' '))
     cvec.fit_transform(x_train) #vocab
-    #print(cvec.vocabulary_)
+    # print(cvec.vocabulary_)
 
     #!แสดงตารางความถี่
     train_bow = cvec.transform(x_train)
