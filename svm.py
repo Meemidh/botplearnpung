@@ -94,7 +94,7 @@ y_test = y[0:ysize_fold]
 # clf.fit(tfidf_vector_train,y_train)
 # svm.SVC(C=0.1)
 
-# model_svm,cvec,tfidf_transformer = createSVMModel(x_train,y_train,100)
+# model_svm,cvec,tfidf_transformer = createSVMModel(x_train,y_train,10)
 # my_predictions = TestingProcessSVM(x_test,model_svm,cvec,tfidf_transformer)
 # report,cfm = evaluation_classification(y_test,my_predictions)
 

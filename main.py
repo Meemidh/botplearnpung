@@ -89,6 +89,13 @@ def generating_answer(question_from_dailogflow_dict,cvec_model,sentiment_Model,t
     print(textsave)
     #save these items to Firebase including message, time, sentiment_str , UserID
     
+    
+    if intent_group_question_str == 'price_dessert':
+        answer_str = price_dessert(sentiment_str)
+    if intent_group_question_str == 'price_drink':
+        answer_str = price_drink(sentiment_str)
+    if intent_group_question_str == 'price_food':
+        answer_str = price_food(sentiment_str)
     if intent_group_question_str == 'price':
         answer_str = price(sentiment_str)
     if intent_group_question_str == 'stupid':
@@ -176,6 +183,36 @@ def generating_answer(question_from_dailogflow_dict,cvec_model,sentiment_Model,t
     return answer_from_bot
 
 #!-----------------------------------------------------------------------
+def price_drink(sentiment_str):
+    database_ref = firestore.client().document('Menu/price_drink')
+    database_dict = database_ref.get().to_dict()
+    database_list = list(database_dict.values())
+    ran_menu = randint(0, len(database_list) - 1)
+    aws = database_list[ran_menu]
+    # -------------------------------------
+    answer_function =   aws + ' ' + sentiment_str
+    return answer_function
+
+def price_food(sentiment_str):
+    database_ref = firestore.client().document('Menu/price_food')
+    database_dict = database_ref.get().to_dict()
+    database_list = list(database_dict.values())
+    ran_menu = randint(0, len(database_list) - 1)
+    aws = database_list[ran_menu]
+    # -------------------------------------
+    answer_function =   aws + ' ' + sentiment_str
+    return answer_function
+
+def price_dessert(sentiment_str):
+    database_ref = firestore.client().document('Menu/price_dessert')
+    database_dict = database_ref.get().to_dict()
+    database_list = list(database_dict.values())
+    ran_menu = randint(0, len(database_list) - 1)
+    aws = database_list[ran_menu]
+    # -------------------------------------
+    answer_function =   aws + ' ' + sentiment_str
+    return answer_function
+
 def price(sentiment_str):
     database_ref = firestore.client().document('talk/price')
     database_dict = database_ref.get().to_dict()
