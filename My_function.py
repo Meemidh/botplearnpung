@@ -49,7 +49,7 @@ def createKnnModel(x_train,y_train,k):
     tfidf_vector_train=tfidf_transformer.transform(count_vector)
     feature_names = cvec.get_feature_names() 
     tfidf = pd.DataFrame(tfidf_vector_train.T.todense(), index=feature_names) 
-    print(tfidf)
+    # print(tfidf)
     
     #!ฝึกโมเดลด้วยK-NN
     knn = KNeighborsClassifier(n_neighbors = k) 
