@@ -89,7 +89,8 @@ def generating_answer(question_from_dailogflow_dict,cvec_model,sentiment_Model,t
     print(textsave)
     #save these items to Firebase including message, time, sentiment_str , UserID
     
-    
+    if intent_group_question_str == 'price':
+        answer_str = price(sentiment_str)
     if intent_group_question_str == 'stupid':
         answer_str = stupid(sentiment_str)
     if intent_group_question_str == 'congrat':
@@ -175,6 +176,16 @@ def generating_answer(question_from_dailogflow_dict,cvec_model,sentiment_Model,t
     return answer_from_bot
 
 #!-----------------------------------------------------------------------
+def price(sentiment_str):
+    database_ref = firestore.client().document('talk/price')
+    database_dict = database_ref.get().to_dict()
+    database_list = list(database_dict.values())
+    ran_menu = randint(0, len(database_list) - 1)
+    aws = database_list[ran_menu]
+    # -------------------------------------
+    answer_function =   aws + ' ' + sentiment_str
+    return answer_function
+
 def stupid(sentiment_str):
     database_ref = firestore.client().document('talk/stupid')
     database_dict = database_ref.get().to_dict()
