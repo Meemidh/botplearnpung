@@ -26,7 +26,7 @@ y = data['sentiment']
 
 n_data = len(x)
 n_fold = 1
-size_fold = int(n_data/n_fold) 
+xsize_fold = int(n_data/n_fold) 
 
 y_data = len(y)
 y_fold = 1
@@ -34,8 +34,8 @@ ysize_fold = int(y_data/y_fold)
 
 #!ใช้ข้อมูลทั้งหมดเทรน 
 
-x_train = x[0:size_fold]
-x_test = x[0:size_fold]
+x_train = x[0:xsize_fold]
+x_test = x[0:xsize_fold]
 
 y_train = y[0:ysize_fold]
 y_test = y[0:ysize_fold]
