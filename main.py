@@ -50,26 +50,21 @@ def generating_answer(question_from_dailogflow_dict,cvec_model,sentiment_Model,t
     
     
     #!--------------------------------------------------------------
-    # #!เอา message จากไลน์มาเข้าจากทำนาย sentiment 
+    
+   #!เอา message จากไลน์มาเข้าจากทำนาย sentiment 
     message2 = pd.Series({'message': message})
     message2 = message2.apply(text_process)
-    
-    
     my_predictions = TestingProcessSVM(message2,sentiment_Model,cvec_model,tfidf_transformer_model)
-    
     result_sentiment = my_predictions
-
     if result_sentiment == 1:
         sentiment_str = '\U0001F60A'
     elif result_sentiment == -1:
         sentiment_str = '\U0001F625'
     elif result_sentiment == 0:
         sentiment_str = '\U0001F610'
-    
-    print(result_sentiment)
-    
     result = result_sentiment.item() 
-    # print(result)
+    
+    
     #!-----------------------------------------------------------
 
     db_ref = firestore.client().collection('UserSentimentRecord')
