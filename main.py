@@ -60,11 +60,11 @@ def generating_answer(question_from_dailogflow_dict,cvec_model,sentiment_Model,t
     result_sentiment = my_predictions
 
     if result_sentiment == 1:
-        sentiment_str = '(≧ᴗ≦)'
+        sentiment_str = '\U0001F60A'
     elif result_sentiment == -1:
-        sentiment_str = '(╥﹏╥)'
+        sentiment_str = '\U0001F625'
     elif result_sentiment == 0:
-        sentiment_str = '(๑・_・๑)'
+        sentiment_str = '\U0001F610'
     
     print(result_sentiment)
     
